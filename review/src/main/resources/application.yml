@@ -1,5 +1,6 @@
 server:
   port: 8080
+
 ---
 
 spring:
@@ -24,23 +25,24 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
       bindings:
         event-in:
-          group: reservation
-          destination: airbnb
+          group: review
+          destination: hwmsacapstone
           contentType: application/json
         event-out:
-          destination: airbnb
+          destination: hwmsacapstone
           contentType: application/json
-prop:
-  room:
-    url: http://localhost:8088
-
 
 logging:
   level:
     org.hibernate.type: trace
     org.springframework.cloud: debug
+
+api:
+  url:
+    schedule: localhost:8081
+
 server:
-  port: 8083
+  port: 8082
 ---
 
 spring:
@@ -49,7 +51,7 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: my-kafka.kafka.svc.cluster.local:9092
+          brokers: my-kafka:9092
         streams:
           binder:
             configuration:
@@ -60,12 +62,14 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
       bindings:
         event-in:
-          group: reservation
-          destination: airbnb
+          group: review
+          destination: hwmsacapstone
           contentType: application/json
         event-out:
-          destination: airbnb
+          destination: hwmsacapstone
           contentType: application/json
-prop:
-  room:
-    url: http://gateway:8080
+
+api:
+  url:
+    schedule: schedule:8080
+

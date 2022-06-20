@@ -1,3 +1,4 @@
+ /*eslint-disable*/
 import Vue from "vue";
 import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
@@ -8,11 +9,22 @@ Vue.config.productionTip = false;
 const axios = require("axios").default;
 
 // backend host url
-axios.backend = "http://localhost:8088";
+axios.backend = null; //"http://localhost:8088";
 
-axios.backendUrl = new URL(axios.backend);
-axios.changeUrl = function(original){
-  var url = new URL(original);
+// axios.backendUrl = new URL(axios.backend);
+axios.fixUrl = function(original){
+
+  if(!axios.backend && original.indexOf("/")==0) return original;
+
+  var url = null;
+
+  try{
+    url = new URL(original);
+  }catch(e){
+    url = new URL(axios.backend + original);
+  }
+
+  if(!axios.backend) return url.pathname;
 
   url.hostname = axios.backendUrl.hostname;
   url.port = axios.backendUrl.port;
@@ -29,8 +41,31 @@ templateFiles.keys().forEach(function(tempFiles) {
     );
   }
 });
-
 Vue.use(Managing);
+const pluralCaseList = []
+
+pluralCaseList.push( {plural: "schedules", pascal: "Schedule"} )
+
+pluralCaseList.push( {plural: "reviews", pascal: "Review"} )
+
+
+pluralCaseList.push( {plural: "scheduleViews", pascal: "ScheduleView"} )
+pluralCaseList.push( {plural: "messages", pascal: "Message"} )
+
+pluralCaseList.push( {plural: "communications", pascal: "Communication"} )
+
+
+Vue.prototype.$ManagerLists.forEach(function(item, idx) {
+  pluralCaseList.forEach(function(tmp) {
+    if(item.toLowerCase() == tmp.pascal.toLowerCase()) {
+      var obj = {
+        name: item,
+        plural: tmp.plural
+      }
+      Vue.prototype.$ManagerLists[idx] = obj
+    }
+  })
+})
 
 new Vue({
   vuetify,

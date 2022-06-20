@@ -1,5 +1,6 @@
 server:
   port: 8080
+
 ---
 
 spring:
@@ -25,16 +26,18 @@ spring:
       bindings:
         event-in:
           group: message
-          destination: airbnb
+          destination: hwmsacapstone
           contentType: application/json
         event-out:
-          destination: airbnb
+          destination: hwmsacapstone
           contentType: application/json
 
 logging:
   level:
     org.hibernate.type: trace
     org.springframework.cloud: debug
+
+
 server:
   port: 8084
 ---
@@ -45,7 +48,7 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: my-kafka.kafka.svc.cluster.local:9092
+          brokers: my-kafka:9092
         streams:
           binder:
             configuration:
@@ -57,8 +60,10 @@ spring:
       bindings:
         event-in:
           group: message
-          destination: airbnb
+          destination: hwmsacapstone
           contentType: application/json
         event-out:
-          destination: airbnb
+          destination: hwmsacapstone
           contentType: application/json
+
+

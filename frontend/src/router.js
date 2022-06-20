@@ -5,52 +5,48 @@ import Router from 'vue-router'
 Vue.use(Router);
 
 
-import PaymentManager from "./components/PaymentManager"
+import ScheduleManager from "./components/listers/ScheduleCards"
 
-import RoomManager from "./components/RoomManager"
-import ReviewManager from "./components/ReviewManager"
+import ReviewManager from "./components/listers/ReviewCards"
 
-import ReservationManager from "./components/ReservationManager"
 
-import RoomView from "./components/RoomView"
-import MessageManager from "./components/MessageManager"
+import ScheduleView from "./components/ScheduleView"
+import MessageManager from "./components/listers/MessageCards"
+
+import CommunicationManager from "./components/listers/CommunicationCards"
 
 export default new Router({
     // mode: 'history',
     base: process.env.BASE_URL,
     routes: [
             {
-                path: '/Payment',
-                name: 'PaymentManager',
-                component: PaymentManager
+                path: '/schedules',
+                name: 'ScheduleManager',
+                component: ScheduleManager
             },
 
             {
-                path: '/Room',
-                name: 'RoomManager',
-                component: RoomManager
-            },
-            {
-                path: '/Review',
+                path: '/reviews',
                 name: 'ReviewManager',
                 component: ReviewManager
             },
 
+
             {
-                path: '/Reservation',
-                name: 'ReservationManager',
-                component: ReservationManager
+                path: '/scheduleViews',
+                name: 'ScheduleView',
+                component: ScheduleView
+            },
+            {
+                path: '/messages',
+                name: 'MessageManager',
+                component: MessageManager
             },
 
             {
-                path: '/RoomView',
-                name: 'RoomView',
-                component: RoomView
-            },
-            {
-                path: '/Message',
-                name: 'MessageManager',
-                component: MessageManager
+                path: '/communications',
+                name: 'CommunicationManager',
+                component: CommunicationManager
             },
 
 

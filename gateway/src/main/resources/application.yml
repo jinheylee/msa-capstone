@@ -8,26 +8,30 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: payment
+        - id: schedule
           uri: http://localhost:8081
           predicates:
-            - Path=/payments/** 
-        - id: room
+            - Path=/schedules/** 
+        - id: review
           uri: http://localhost:8082
           predicates:
-            - Path=/rooms/**, /reviews/**, /check/**
-        - id: reservation
+            - Path=/reviews/** 
+        - id: viewpage
           uri: http://localhost:8083
           predicates:
-            - Path=/reservations/**
+            - Path= 
         - id: message
           uri: http://localhost:8084
           predicates:
             - Path=/messages/** 
-        - id: viewpage
+        - id: communication
           uri: http://localhost:8085
           predicates:
-            - Path= /roomviews/**
+            - Path=/communications/** 
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -47,26 +51,30 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: payment
-          uri: http://payment:8080
+        - id: schedule
+          uri: http://schedule:8080
           predicates:
-            - Path=/payments/** 
-        - id: room
-          uri: http://room:8080
+            - Path=/schedules/** 
+        - id: review
+          uri: http://review:8080
           predicates:
-            - Path=/rooms/**, /reviews/**, /check/**
-        - id: reservation
-          uri: http://reservation:8080
+            - Path=/reviews/** 
+        - id: viewpage
+          uri: http://viewpage:8080
           predicates:
-            - Path=/reservations/**
+            - Path= 
         - id: message
           uri: http://message:8080
           predicates:
             - Path=/messages/** 
-        - id: viewpage
-          uri: http://viewpage:8080
+        - id: communication
+          uri: http://communication:8080
           predicates:
-            - Path= /roomviews/**
+            - Path=/communications/** 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+            - Path=/**
       globalcors:
         corsConfigurations:
           '[/**]':
