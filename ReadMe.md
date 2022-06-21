@@ -33,12 +33,12 @@
 <img src="./image/Hexagonal.PNG"></img><br/>
 
 
+
 # SAGA Pattern
 
 ## 구현
 
 서비스를 아래와 같은 방법으로 개별적으로 실행한다.
-<<<<<<< HEAD
 
 ```java
 $ cd schedule
