@@ -61,8 +61,98 @@ mvn spring-boot:run
 
 3) **Netflix** 에서 만들어졌고, **spring-cloud-starter-openfeign** 으로 스프링 라이브러리에서 사용할 수 있습니다.
 
+
 # Gateway
 
+**1) gateway 서비스 포트 8080으로 지정**
+server:
+  port: 8088
+  
+**2) 설정 파일(application.yaml) 내 각 마이크로 서비스 route 추가**
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: schedule
+          uri: http://schedule:8080
+          predicates:
+            - Path=/schedules/** 
+        - id: review
+          uri: http://review:8080
+          predicates:
+            - Path=/reviews/** 
+        - id: viewpage
+          uri: http://viewpage:8080
+          predicates:
+            - Path= 
+        - id: message
+          uri: http://message:8080
+          predicates:
+            - Path=/messages/** 
+        - id: communication
+          uri: http://communication:8080
+          predicates:
+            - Path=/communications/** 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+**3) Kubernetes Deployment.yaml 작성**
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+  labels:
+    app: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      containers:
+        - name: gateway
+          image: username/gateway:latest
+          ports:
+            - containerPort: 8080
+
+**4) Deploy**
+kubectl apply -f deployment.yaml
+
+**5) Kubernetes용 Service.yaml 작성**
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+  labels:
+    app: gateway
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: gateway
+  type: LoadBalancer
+  
+**6) Service/LoadBalancer 생성하여 Gateway end point 확인**
+kubectl apply -f service.yaml
+kubectl get svc -n schedule
 
 
 # Deploy / Pipeline
