@@ -26,17 +26,31 @@ public class Review {
 
     @PostPersist
     public void onPostPersist() {
-        ReviewRegistered reviewRegistered = new ReviewRegistered(this);
-        reviewRegistered.publishAfterCommit();
 
+
+
+
+
+        
         //Following code causes dependency to external APIs
         // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
+      
+        // 해당 리뷰가 등록가능한 상태인지 체크
         hwmsacapstone.external.Schedule schedule = new hwmsacapstone.external.Schedule();
-        // mappings goes here
-        ReviewApplication.applicationContext
+        boolean result = ReviewApplication.applicationContext
             .getBean(hwmsacapstone.external.ScheduleService.class)
             .checkWriteReview(schedule);
+        if (result){
+            // 예약 가능한 상태인 경우(Available)
+            // 등록
+            ReviewRegistered reviewRegistered = new ReviewRegistered(this);
+            reviewRegistered.publishAfterCommit();
+        }
+
+
+
+
 
         ReviewModified reviewModified = new ReviewModified(this);
         reviewModified.publishAfterCommit();

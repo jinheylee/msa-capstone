@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(name = "schedule", url = "${api.url.schedule}")
 public interface ScheduleService {
     @RequestMapping(method = RequestMethod.POST, path = "/schedules")
-    public void checkWriteReview(@RequestBody Schedule schedule);
+    public boolean checkWriteReview(@RequestBody Schedule schedule);
     // keep
 
 }

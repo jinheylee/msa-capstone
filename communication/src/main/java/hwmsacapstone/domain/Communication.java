@@ -33,35 +33,48 @@ public class Communication {
     private Boolean likeYn;
 
     private String commentDesc;
-
+    private String status;
     @PostPersist
     public void onPostPersist() {
-        CommentRegistered commentRegistered = new CommentRegistered(this);
-        commentRegistered.publishAfterCommit();
+        // CommentRegistered commentRegistered = new CommentRegistered(this);
+        // commentRegistered.publishAfterCommit();
 
-        CommentModified commentModified = new CommentModified(this);
-        commentModified.publishAfterCommit();
+        // CommentModified commentModified = new CommentModified(this);
+        // commentModified.publishAfterCommit();
 
-        CommentDeleted commentDeleted = new CommentDeleted(this);
-        commentDeleted.publishAfterCommit();
+        // CommentDeleted commentDeleted = new CommentDeleted(this);
+        // commentDeleted.publishAfterCommit();
 
-        BookmarkRegistered bookmarkRegistered = new BookmarkRegistered(this);
-        bookmarkRegistered.publishAfterCommit();
+        
 
-        BookmarkCanceled bookmarkCanceled = new BookmarkCanceled(this);
-        bookmarkCanceled.publishAfterCommit();
+        // BookmarkCanceled bookmarkCanceled = new BookmarkCanceled(this);
+        // bookmarkCanceled.publishAfterCommit();
 
-        LikeRegister likeRegister = new LikeRegister(this);
-        likeRegister.publishAfterCommit();
+        // LikeRegister likeRegister = new LikeRegister(this);
+        // likeRegister.publishAfterCommit();
 
-        LikeCanceled likeCanceled = new LikeCanceled(this);
-        likeCanceled.publishAfterCommit();
+        // LikeCanceled likeCanceled = new LikeCanceled(this);
+        // likeCanceled.publishAfterCommit();
     }
+
+    @PrePersist
+    public void onPrePersist(){
+        System.out.println("PrePersist");
+        if("bookmark".equals(this.getStatus())){
+            BookmarkRegistered bookmarkRegistered = new BookmarkRegistered(this);
+            bookmarkRegistered.publishAfterCommit();
+        }
+    }
+    
 
     public static CommunicationRepository repository() {
         CommunicationRepository communicationRepository = CommunicationApplication.applicationContext.getBean(
             CommunicationRepository.class
         );
         return communicationRepository;
+    }
+
+    public String getStatus(){
+        return this.status;
     }
 }

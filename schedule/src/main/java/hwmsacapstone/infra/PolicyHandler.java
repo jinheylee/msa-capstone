@@ -100,9 +100,7 @@ public class PolicyHandler {
     }
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void wheneverReviewDeleted_UpdateReviewCnt(
-        @Payload ReviewDeleted reviewDeleted
-    ) {
+    public void wheneverReviewDeleted_UpdateReviewCnt(@Payload ReviewDeleted reviewDeleted) {
         if (!reviewDeleted.validate()) return;
         ReviewDeleted event = reviewDeleted;
         System.out.println(

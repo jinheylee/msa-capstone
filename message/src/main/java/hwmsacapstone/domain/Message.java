@@ -21,6 +21,38 @@ public class Message {
 
     private Boolean bookmarkYn;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getScheduleId() {
+        return scheduleId;
+    }
+
+    public void setScheduleId(Long scheduleId) {
+        this.scheduleId = scheduleId;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public Boolean getBookmarkYn() {
+        return bookmarkYn;
+    }
+
+    public void setBookmarkYn(Boolean bookmarkYn) {
+        this.bookmarkYn = bookmarkYn;
+    }
+
     public static MessageRepository repository() {
         MessageRepository messageRepository = MessageApplication.applicationContext.getBean(
             MessageRepository.class
