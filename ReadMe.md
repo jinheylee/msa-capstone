@@ -17,18 +17,22 @@
 ## 구현
 
 서비스를 아래와 같은 방법으로 개별적으로 실행한다.
-
-cd schedule
-mvn spring-boot:run
-
-cd communication
-mvn spring-boot:run
-
-cd review
-mvn spring-boot:run
-
-cd viewpage
-mvn spring-boot:run
+```
+$ cd schedule
+$ mvn spring-boot:run
+```
+```
+$ cd communication
+$ mvn spring-boot:run
+```
+```
+$ cd review
+$ mvn spring-boot:run
+```
+```
+$ cd viewpage
+$ mvn spring-boot:run
+```
 
 4개의 도메인으로 관리되고 있으며 코스관리(Schedule), 소통(Communication), 후기(Review), 코스조회(Viewpage)으로 구성된다.
 
