@@ -61,6 +61,37 @@ $ mvn spring-boot:run
 ```
 
 4개의 도메인으로 관리되고 있으며 코스관리(Schedule), 소통(Communication), 후기(Review), 코스조회(Viewpage)으로 구성된다.
+```
+@Entity
+@Table(name = "Schedule_table")
+@Data
+public class Schedule {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String title;
+    private String content;
+    private String uploader;
+    private Integer commentCnt;
+    private Long bookmarkCnt;
+    private Integer likeCnt;
+    private Boolean reviewWriteYn;
+    private Integer reviewCnt;
+
+    @PostPersist
+    public void onPostPersist() {
+        ScheduleRegistered scheduleRegistered = new ScheduleRegistered(this);
+        scheduleRegistered.publishAfterCommit();
+
+        ScheduleModified scheduleModified = new ScheduleModified(this);
+        scheduleModified.publishAfterCommit();
+
+        ScheduleDeleted scheduleDeleted = new ScheduleDeleted(this);
+        scheduleDeleted.publishAfterCommit();
+    }
+...    
+```
 
 # CQRS Pattern
 
