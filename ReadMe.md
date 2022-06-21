@@ -130,7 +130,8 @@ gitpod /workspace/msa-capstone-project (main) $ http POST :8082/schedules title=
 ```
 
 * viewpage 서비스를 실행
-```cd viewpage
+```
+cd viewpage
 mvn spring-boot:run
 ```
 
