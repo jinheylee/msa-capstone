@@ -44,26 +44,6 @@ $ cd viewpage
 $ mvn spring-boot:run
 ```
 
-
-=======
-```
-$ cd schedule
-$ mvn spring-boot:run
-```
-```
-$ cd communication
-$ mvn spring-boot:run
-```
-```
-$ cd review
-$ mvn spring-boot:run
-```
-```
-$ cd viewpage
-$ mvn spring-boot:run
-```
->>>>>>> 314ad586b7dcbe08bc765a909e83daedaa75e6ec
-
 4개의 도메인으로 관리되고 있으며 코스관리(Schedule), 소통(Communication), 후기(Review), 코스조회(Viewpage)으로 구성된다.
 
 # CQRS Pattern
