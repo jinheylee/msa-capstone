@@ -19,7 +19,7 @@
 
 
 ## Event storming 결과
-<img src="/image/eventstorming.jpg" width="450px" height="300px"></img><br/>
+<img src="/image/EventStorming.png" width="700px" height="400px"></img><br/>
 
 
 # SAGA Pattern
