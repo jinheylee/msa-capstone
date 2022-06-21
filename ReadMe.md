@@ -22,7 +22,7 @@
 <img src="./image/EventStorming.PNG"></img><br/>
 
 ### 기능적, 비기능적 요구사항 검토
-<img src="./image/EventStorming_1.PNG"></img><br/>
+<img src="./image/EventStorming_1.png"></img><br/>
 
 ### 헥사고날 아키텍쳐 도출
 <img src="./image/Hexagonal.PNG"></img><br/>
