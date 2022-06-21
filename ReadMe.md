@@ -65,10 +65,13 @@ mvn spring-boot:run
 # Gateway
 
 **1) gateway 서비스 포트 8080으로 지정**
+```
 server:
   port: 8088
-  
+```
+
 **2) 설정 파일(application.yaml) 내 각 마이크로 서비스 route 추가**
+```
 spring:
   profiles: docker
   cloud:
@@ -108,8 +111,10 @@ spring:
             allowedHeaders:
               - "*"
             allowCredentials: true
+```
 
 **3) Kubernetes Deployment.yaml 작성**
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -131,11 +136,15 @@ spec:
           image: username/gateway:latest
           ports:
             - containerPort: 8080
+```
 
 **4) Deploy**
-kubectl apply -f deployment.yaml
+```
+$ kubectl apply -f deployment.yaml
+```
 
 **5) Kubernetes용 Service.yaml 작성**
+```
 apiVersion: v1
 kind: Service
 metadata:
@@ -149,10 +158,13 @@ spec:
   selector:
     app: gateway
   type: LoadBalancer
-  
+```
+
 **6) Service/LoadBalancer 생성하여 Gateway end point 확인**
-kubectl apply -f service.yaml
-kubectl get svc -n schedule
+```
+$ kubectl apply -f service.yaml
+$ kubectl get svc -n schedule
+```
 
 
 # Deploy / Pipeline
