@@ -22,6 +22,7 @@
 ## 구현
 
 서비스를 아래와 같은 방법으로 개별적으로 실행한다.
+<<<<<<< HEAD
 
 ```java
 $ cd schedule
@@ -44,6 +45,24 @@ $ mvn spring-boot:run
 ```
 
 
+=======
+```
+$ cd schedule
+$ mvn spring-boot:run
+```
+```
+$ cd communication
+$ mvn spring-boot:run
+```
+```
+$ cd review
+$ mvn spring-boot:run
+```
+```
+$ cd viewpage
+$ mvn spring-boot:run
+```
+>>>>>>> 314ad586b7dcbe08bc765a909e83daedaa75e6ec
 
 4개의 도메인으로 관리되고 있으며 코스관리(Schedule), 소통(Communication), 후기(Review), 코스조회(Viewpage)으로 구성된다.
 
@@ -98,6 +117,7 @@ SNS Project에서는 PolicyHandler에서 처리 시 어떤 건에 대한 처리�
 1) Feign Client는 ***\*web service 클라이언트를 보다 쉽게 작성할 수 있도록 도와줍니다.\****
 2) interface를 작성하고 annotation을 붙여주면 세부적인 내용 없이 사용할 수 있기 때문에 ***\*코드 복잡도가 낮아집니다.\****
 3) ***\*Netflix\**** 에서 만들어졌고, ***\*spring-cloud-starter-openfeign\**** 으로 스프링 라이브러리에서 사용할 수 있습니다.
+
 
 # Gateway
 
