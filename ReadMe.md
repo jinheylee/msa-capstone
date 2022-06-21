@@ -18,8 +18,14 @@
 - 고객이 코스(schedule) 상태를 시스템에서 확인할 수 있어야 한다 (CQRS)
 
 
-## Event storming 결과
+### Event storming 결과
 <img src="./image/EventStorming.PNG"></img><br/>
+
+### 기능적, 비기능적 요구사항 검토
+<img src="./image/EventStorming_1.PNG"></img><br/>
+
+### 헥사고날 아키텍쳐 도출
+<img src="./image/Hexagonal.PNG"></img><br/>
 
 
 # SAGA Pattern
