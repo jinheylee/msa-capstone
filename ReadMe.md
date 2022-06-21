@@ -111,6 +111,10 @@ public class Schedule {
 
 Table 모델링 (ROOMVIEW)
 
+* Schedule 등록
+```
+gitpod /workspace/msa-capstone-project (main) $ http POST :8081/orders productId=1 qty=1
+```
 
 
 # Correlation / Compensation(Unique Key)
