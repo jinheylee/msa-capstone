@@ -18,6 +18,9 @@
 - 고객이 코스(schedule) 상태를 시스템에서 확인할 수 있어야 한다 (CQRS)
 
 
+## Event storming 결과
+<img src="/image/eventstorming.jpg" width="450px" height="300px"></img><br/>
+
 
 # SAGA Pattern
 
