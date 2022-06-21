@@ -19,7 +19,7 @@
 
 
 ## Event storming 결과
-![ex_screenshot](./img/EventStorming.png)
+![ex_screenshot](./image/EventStorming.png)
 <img src="./image/EventStorming.png" width="700px" height="400px"></img><br/>
 
 
