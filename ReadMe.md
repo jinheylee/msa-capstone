@@ -111,11 +111,33 @@ public class Schedule {
 
 Table 모델링 (ROOMVIEW)
 
+
 * Schedule 등록
 ```
-gitpod /workspace/msa-capstone-project (main) $ http POST :8081/orders productId=1 qty=1
+gitpod /workspace/msa-capstone-project (main) $ http POST :8082/schedules title="test" content="여의도" uploader="tester" reviewWriteYn = true
 ```
 
+```
+등록된 내용 작성...
+```
+
+* 카프카 consumer 이벤트 모니터링
+```
+/usr/local/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic shopmall --from-beginning
+```
+```
+{"eventType":"ScheduleResistered","timestamp":"20220621104951","id":1,"title":"test", "content":"여의도", uploader:"tester","commentCnt":null,"bookmarkCnt":null,"bookmarkCnt":null,"likeCnt":null, "reviewWriteYn":true, "reviewCnt":null}
+```
+
+* viewpage 서비스를 실행
+```cd viewpage
+mvn spring-boot:run
+```
+
+* view의 Query Model을 통해 코스(schedule)를 통합조회 Query Model 은 발생한 모든 이벤트를 수신하여 자신만의 View로 데이터를 통합 조회 가능하게 함
+```
+http localhost:8083/scheduleViews/...
+```
 
 # Correlation / Compensation(Unique Key)
 
